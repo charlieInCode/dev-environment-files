@@ -309,6 +309,9 @@ cd "$DOTFILES_DIR"
 print_info "Using stow to symlink dotfiles from $DOTFILES_DIR to $HOME..."
 
 # Use stow to create symlinks
+print_info "Attempting to symlink dotfiles..."
+
+# Try stow first without adopting
 if stow -t "$HOME" . 2>/dev/null; then
     print_success "Configuration files successfully linked!"
     print_info "The following files/directories are now symlinked:"
@@ -319,9 +322,28 @@ if stow -t "$HOME" . 2>/dev/null; then
     echo "  • ~/coolnight.itermcolors"
     echo "  • ~/qmk/"
 else
-    print_warning "Some conflicts detected. Attempting to adopt existing files..."
-    stow --adopt -t "$HOME" . 2>/dev/null || true
-    print_success "Configuration files linked (existing files adopted)"
+    print_warning "Conflicts detected! Backing up existing files..."
+    
+    # Backup conflicting files instead of adopting them
+    BACKUP_DIR="$HOME/dotfiles_backup_$(date +%Y%m%d_%H%M%S)"
+    mkdir -p "$BACKUP_DIR"
+    
+    # Backup common conflicting files
+    for file in .zshrc .tmux.conf .wezterm.lua; do
+        if [ -f "$HOME/$file" ] && [ ! -L "$HOME/$file" ]; then
+            print_info "Backing up ~/$file"
+            mv "$HOME/$file" "$BACKUP_DIR/"
+        fi
+    done
+    
+    # Try stow again
+    if stow -t "$HOME" . 2>/dev/null; then
+        print_success "Configuration files linked! Backups saved to: $BACKUP_DIR"
+    else
+        print_error "Failed to link dotfiles. Manual intervention needed."
+        print_info "Backup location: $BACKUP_DIR"
+        exit 1
+    fi
 fi
 
 # ==================================================

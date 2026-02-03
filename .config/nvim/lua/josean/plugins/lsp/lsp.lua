@@ -15,5 +15,6 @@ return {
     vim.lsp.config("*", {
       capabilities = capabilities,
     })
+
   end,
 }
