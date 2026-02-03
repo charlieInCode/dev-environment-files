@@ -25,6 +25,8 @@ return {
     telescope.setup({
       defaults = {
         path_display = { "smart" },
+        -- Fix for treesitter highlighting errors
+        buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
         mappings = {
           i = {
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
@@ -32,6 +34,11 @@ return {
             ["<C-q>"] = actions.send_selected_to_qflist + custom_actions.open_trouble_qflist,
             ["<C-t>"] = trouble_telescope.open,
           },
+        },
+      },
+      pickers = {
+        find_files = {
+          hidden = true,
         },
       },
     })

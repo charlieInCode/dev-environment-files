@@ -96,6 +96,10 @@ export BAT_THEME=tokyonight_night
 # ---- Eza (better ls) -----
 
 alias ls="eza --icons=always"
+alias ll="eza -l --icons=always --git"
+alias la="eza -a --icons=always"
+alias lla="eza -la --icons=always --git"
+alias lt="eza --tree --level=2 --icons=always"
 
 # ---- TheFuck -----
 
