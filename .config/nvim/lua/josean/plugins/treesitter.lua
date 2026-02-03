@@ -3,8 +3,12 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   build = ":TSUpdate",
   config = function()
-    -- import nvim-treesitter plugin
-    local treesitter = require("nvim-treesitter.configs")
+    -- import nvim-treesitter plugin safely
+    local status, treesitter = pcall(require, "nvim-treesitter.configs")
+    if not status then
+      vim.notify("nvim-treesitter not installed yet", vim.log.levels.WARN)
+      return
+    end
 
     -- configure treesitter
     treesitter.setup({ -- enable syntax highlighting
@@ -47,7 +51,9 @@ return {
       },
     })
 
-    -- use bash parser for zsh files
-    vim.treesitter.language.register("bash", "zsh")
+    -- use bash parser for zsh files (safely)
+    if vim.treesitter and vim.treesitter.language then
+      vim.treesitter.language.register("bash", "zsh")
+    end
   end,
 }

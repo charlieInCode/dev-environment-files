@@ -1,0 +1,225 @@
+# ==================================================
+# Git Ignore for Dotfiles Repository
+# ==================================================
+
+# ==================================================
+# Operating System Files
+# ==================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.fseventsd
+.TemporaryItems
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ==================================================
+# Editor & IDE Files
+# ==================================================
+
+# VSCode / Cursor
+.vscode/
+.cursor/
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+.idea_modules/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*.swn
+.*.sw[a-p]
+*~
+.netrwhist
+Session.vim
+tags
+
+# Emacs
+\#*\#
+.#*
+*.elc
+auto-save-list
+tramp
+
+# ==================================================
+# Personal & Sensitive Files
+# ==================================================
+
+# Environment variables and secrets
+.env
+.env.*
+.envrc
+secrets.*
+*.pem
+*.key
+*.crt
+*.cert
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+
+# Personal overrides
+*.local
+*.private
+*-personal.*
+
+# ==================================================
+# Backup & Temporary Files
+# ==================================================
+
+# Backups
+*.backup
+*.bak
+*.old
+*.orig
+*.save
+*.tmp
+dotfiles_backup_*/
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# ==================================================
+# Logs
+# ==================================================
+
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==================================================
+# Neovim Specific
+# ==================================================
+
+# Plugin manager caches (but keep lazy-lock.json for reproducibility)
+.config/nvim/.lazy/
+.config/nvim/.repro/
+.config/nvim/plugin/packer_compiled.lua
+
+# LSP, Mason, and plugin data (these should be generated fresh)
+.config/nvim/.luarc.json
+.config/nvim/spell/*.add.spl
+
+# Neovim state files
+.config/nvim/shada/
+.config/nvim/swap/
+.config/nvim/undo/
+.config/nvim/view/
+
+# ==================================================
+# Zsh
+# ==================================================
+
+# Zsh compiled files
+.zcompdump*
+.zsh_history
+.zsh_sessions/
+*.zwc
+
+# Powerlevel10k instant prompt cache
+.p10k-instant-prompt-*.zsh
+
+# ==================================================
+# Tmux
+# ==================================================
+
+# Tmux plugin manager (should be installed via bootstrap)
+.tmux/plugins/
+
+# Tmux resurrect/continuum state (personal session data)
+.tmux/resurrect/
+
+# ==================================================
+# Node.js / npm
+# ==================================================
+
+node_modules/
+package-lock.json
+yarn.lock
+.npm/
+.yarn/
+.pnpm-store/
+
+# ==================================================
+# Package Manager Caches
+# ==================================================
+
+# Homebrew
+Brewfile.lock.json
+
+# ==================================================
+# Git
+# ==================================================
+
+# Git credential cache
+.git-credentials
+
+# ==================================================
+# Testing & Development
+# ==================================================
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Debug files
+debug.log
+.vscode-test/
+
+# ==================================================
+# Stow
+# ==================================================
+
+# Stow backup files (if stow --adopt was used)
+*.stow-*
+
+# ==================================================
+# Personal Notes & Documentation
+# ==================================================
+
+# Personal notes that shouldn't be shared
+NOTES.md
+TODO.md
+PERSONAL.md
+scratch.*
+
+# ==================================================
+# Coder Workspace Specific
+# ==================================================
+
+# Coder workspace state
+.coder/
