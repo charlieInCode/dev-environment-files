@@ -23,8 +23,19 @@ config.font_size = 19
 
 config.enable_tab_bar = false
 
-config.window_background_opacity = 0.7
+config.window_background_opacity = 0.9
 config.macos_window_background_blur = 10
+
+-- Make CMD+click open links even when apps (like tmux) capture mouse events.
+config.bypass_mouse_reporting_modifiers = "SHIFT|SUPER"
+
+config.mouse_bindings = {
+	{
+		event = { Up = { streak = 1, button = "Left" } },
+		mods = "SUPER",
+		action = wezterm.action.OpenLinkAtMouseCursor,
+	},
+}
 
 -- and finally, return the configuration to wezterm
 return config
